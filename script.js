@@ -1,21 +1,18 @@
-const slideWrapper = document.querySelector(".carousel-wrapper");
-const slides = document.querySelectorAll(".carousel-slide");
-const slideWidth = slides[0].offsetWidth;
+const slides = document.querySelectorAll(".carousel-content");
 let currentIndex = 0;
 
-function nextSlide() {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateCarousel();
-}
+const changeSlide = (direction) => {
+  slides[currentIndex].classList.remove("active");
+  currentIndex = (currentIndex + direction + slides.length) % slides.length;
+  slides[currentIndex].classList.add("active");
+};
 
-function previousSlide() {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-  updateCarousel();
-}
+document
+  .querySelector(".next-button")
+  .addEventListener("click", () => changeSlide(1));
+document
+  .querySelector(".prev-button")
+  .addEventListener("click", () => changeSlide(-1));
 
-function updateCarousel() {
-  gsap.to(slideWrapper, { x: -currentIndex * slideWidth, duration: 0.5 });
-}
-
-document.querySelector(".next-button").addEventListener("click", nextSlide);
-document.querySelector(".prev-button").addEventListener("click", previousSlide);
+// Initially show the first slide
+slides[currentIndex].classList.add("active");
