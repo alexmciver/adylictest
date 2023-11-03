@@ -1,3 +1,6 @@
+* {
+  box-sizing: content-box;
+}
 /* fonts */
 @font-face {
   font-family: "BemboStd";
@@ -5,11 +8,7 @@
 }
 @font-face {
   font-family: "Avenir-heavy";
-  src: url("./fonts/AvenirLTStd-Black.otf") format("opentype");
-}
-@font-face {
-  font-family: "AvenirStd";
-  src: url("./fonts/AvenirLTStd-Book.otf") format("opentype");
+  src: url("./fonts/Avenir-Heavy.ttf") format("truetype");
 }
 h1 {
   font-size: 24px;
@@ -25,96 +24,30 @@ h1 {
   display: none;
   width: 100%;
   text-align: center;
-  padding: 20px;
+  width: 100%;
+  max-width: 156px;
 }
 .carousel-content.active {
   display: block;
+  width: 156px;
 }
 .next-button,
 .prev-button {
-  padding-top: 35px;
+  padding-top: 3.5px;
+  max-width: 7px;
+  max-height: 12px;
 }
 
-/* navigation */
-nav {
-  background-color: #333; /* Background color for the navigation bar */
-}
-ul {
-  list-style-type: none; /* Remove default list bullets */
-  padding: 0;
-  margin: 0;
-}
-li {
-  display: inline; /* Display list items horizontally */
-  margin-right: 15px; /* Add space between menu items */
-}
-a {
-  text-decoration: none; /* Remove underlines from links */
-  color: #fff; /* Text color for links */
-  font-weight: bold; /* Make the text bold */
-}
-/* Style the links on hover */
-a:hover {
-  color: #ff6600; /* Change the text color on hover */
-}
-
-/* banner 1 CSS*/
-.banner-1 {
-  background: url("./images/banner-1/background.jpg");
+.prev-button img,
+.next-button img {
   width: 100%;
-  max-width: 320px;
-  height: 50px;
-  display: flex;
-  align-items: center;
+  height: 100%;
 }
-.banner-1 .flexbox {
-  display: flex;
-  padding: 0 16.5px;
-  align-items: center;
-}
-.banner-1 .flexbox .content-left,
-.banner-1 .flexbox .content-right {
-  width: 50%;
-}
-.banner-1 .flexbox .content-right {
-  position: relative;
-  left: 36px;
-}
-.banner-1 .flexbox .content-left .logo {
-  width: 94px;
-  height: 30px;
-  margin: 0 134px 0 0;
-  object-fit: contain;
-}
-.banner-1 .content-right h2 {
-  font-family: "Avenir-heavy", serif;
-  font-size: 9px;
-  font-weight: 900;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 3.33;
-  letter-spacing: 0.9px;
-  text-align: center;
-  color: #fff;
-  text-transform: uppercase;
-  margin: 0;
-}
-.banner-1 .flexbox .content-right .line {
-  width: 58px;
-  height: 1px;
-  background-color: white;
-  margin: 0;
-  z-index: 1;
-  position: relative;
-  top: -8px;
-  left: 41px;
-}
-/* banner 1 CSS end*/
 
 .content-top {
   width: 100%;
   height: 444px;
-  background: url("./images/banner-2/mens-scarf-and-briefcase.png");
+  background: url("./images/mens-scarf-and-briefcase.png");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -122,20 +55,29 @@ a:hover {
   align-items: center;
   justify-content: center;
 }
+.content-top img {
+  width: 199px;
+  height: 63px;
+  object-fit: contain;
+}
 .content-bottom {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f9f7f0;
+  max-height: 165px;
+  padding-top: 33px;
 }
 .content-bottom .container {
   width: 100%;
   max-width: 261px;
+  height: 100%;
   display: flex;
+  justify-content: space-between;
 }
 .content-bottom h2 {
   font-family: "BemboStd", serif;
-  font-size: 25px;
+  font-size: 24.7px;
   font-weight: 400;
   line-height: 1.16;
   letter-spacing: 0.5px;
@@ -159,27 +101,20 @@ a:hover {
   text-align: center;
   color: #000;
 }
+.content-bottom .shop-now-btn a {
+  text-decoration: none;
+}
 .content-bottom .line {
   width: 81px;
   height: 1px;
   background-color: #000;
   margin-bottom: 32px;
 }
-
-/* banner 2 */
-.banner-2 {
+.banner {
   width: 300px;
-  text-align: center; /* Center align the content */
+  height: 600px;
 }
-/* banner 2 CSS end*/
-
-/* banner 3 */
-.banner-3 {
-  width: 300px;
-  text-align: center; /* Center align the content */
+.container {
+  display: flex;
+  justify-content: center;
 }
-.banner-3 h1 {
-  font-size: 24px;
-  margin: 10px 0;
-}
-/* banner 3 CSS end */
