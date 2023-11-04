@@ -4,12 +4,15 @@
 /* fonts */
 @font-face {
   font-family: "BemboStd";
-  src: url("./fonts/BemboStd.otf") format("opentype");
+  src: url("./fonts/BemboStd.woff2") format("woff2"),
+    url("./fonts/BemboStd.woff") format("woff");
 }
 @font-face {
   font-family: "Avenir-heavy";
-  src: url("./fonts/Avenir-Heavy.ttf") format("truetype");
+  src: url("./fonts/Avenir-Heavy.woff2") format("woff2"),
+    url("./fonts/Avenir-Heavy.woff") format("woff");
 }
+
 h1 {
   font-size: 24px;
   margin: 10px 0;
