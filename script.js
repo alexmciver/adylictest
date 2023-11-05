@@ -2,9 +2,19 @@ const slides = document.querySelectorAll(".carousel-content");
 let currentIndex = 0;
 
 const changeSlide = (direction) => {
-  slides[currentIndex].classList.remove("active");
-  currentIndex = (currentIndex + direction + slides.length) % slides.length;
-  slides[currentIndex].classList.add("active");
+  const currentSlide = slides[currentIndex];
+  const nextIndex = (currentIndex + direction + slides.length) % slides.length;
+  const nextSlide = slides[nextIndex];
+
+  // Use GSAP for the transition
+  gsap.fromTo(currentSlide, { opacity: 1 }, { opacity: 0, duration: 1 });
+  gsap.fromTo(nextSlide, { opacity: 0 }, { opacity: 1, duration: 1 });
+
+  // Remove "active" class from current slide and add it to the next slide
+  currentSlide.classList.remove("active");
+  nextSlide.classList.add("active");
+
+  currentIndex = nextIndex;
 };
 
 document
