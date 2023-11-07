@@ -35,18 +35,6 @@ const startAutoPlay = () => {
   autoPlay();
 };
 
-document.querySelector(".next-button").addEventListener("click", () => {
-  stopAutoPlay();
-  changeSlide(1);
-  startAutoPlay();
-});
-
-document.querySelector(".prev-button").addEventListener("click", () => {
-  stopAutoPlay();
-  changeSlide(-1);
-  startAutoPlay();
-});
-
 slides[currentIndex].classList.add("active");
 autoPlay();
 

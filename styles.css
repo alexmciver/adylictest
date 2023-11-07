@@ -53,7 +53,7 @@
 }
 .next-button,
 .prev-button {
-  z-index: 1;
+  cursor: pointer;
 }
 .bottom {
   background: #f9f8f0;
