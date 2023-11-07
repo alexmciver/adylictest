@@ -1,20 +1,17 @@
-const slides = document.querySelectorAll(".carousel-content");
+const slides = document.querySelectorAll(".slide");
 let currentIndex = 0;
+let autoplayInterval;
 
 const changeSlide = (direction) => {
-  const currentSlide = slides[currentIndex];
-  const nextIndex = (currentIndex + direction + slides.length) % slides.length;
-  const nextSlide = slides[nextIndex];
+  gsap.to(slides[currentIndex], { opacity: 0, duration: 1 });
+  currentIndex = (currentIndex + direction + slides.length) % slides.length;
+  gsap.to(slides[currentIndex], { opacity: 1, duration: 1 });
 
-  // Use GSAP for the transition
-  gsap.fromTo(currentSlide, { opacity: 1 }, { opacity: 0, duration: 1 });
-  gsap.fromTo(nextSlide, { opacity: 0 }, { opacity: 1, duration: 1 });
+  // Remove "active" class from all slides
+  slides.forEach((slide) => slide.classList.remove("active"));
 
-  // Remove "active" class from current slide and add it to the next slide
-  currentSlide.classList.remove("active");
-  nextSlide.classList.add("active");
-
-  currentIndex = nextIndex;
+  // Add the "active" class to the next slide
+  slides[currentIndex].classList.add("active");
 };
 
 document
@@ -24,5 +21,22 @@ document
   .querySelector(".prev-button")
   .addEventListener("click", () => changeSlide(-1));
 
-// Initially show the first slide
+// Initially show the first slide and add the "active" class
 slides[currentIndex].classList.add("active");
+gsap.set(slides[currentIndex], { opacity: 1 });
+
+const startAutoPlay = () => {
+  autoplayInterval = setInterval(() => changeSlide(1), 1500); // Each slide will last for 1.5 seconds
+};
+
+const stopAutoPlay = () => {
+  clearInterval(autoplayInterval);
+};
+
+startAutoPlay(); // Start autoplay initially
+
+// Pause autoplay on slide hover
+slides.forEach((slide) => {
+  slide.addEventListener("mouseenter", stopAutoPlay);
+  slide.addEventListener("mouseleave", startAutoPlay);
+});

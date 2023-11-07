@@ -1,129 +1,135 @@
-* {
-  box-sizing: content-box;
-}
-/* fonts */
 @font-face {
   font-family: "BemboStd";
-  src: url("./fonts/BemboStd.woff2") format("woff2"),
-    url("./fonts/BemboStd.woff") format("woff");
+  font-weight: 400;
+  src: url("./fonts/BemboStd.woff2") format("woff2");
 }
 @font-face {
   font-family: "Avenir-heavy";
-  src: url("./fonts/Avenir-Heavy.woff2") format("woff2"),
-    url("./fonts/Avenir-Heavy.woff") format("woff");
+  font-weight: 900;
+  src: url("./fonts/Avenir-Heavy.woff2") format("woff2");
 }
 
-h1 {
-  font-size: 24px;
-  margin: 10px 0;
-}
-
-/*carousel global */
-.carousel {
+.slider-container {
   display: flex;
-  align-items: center;
-}
-.carousel-content {
-  display: none;
-  width: 100%;
-  text-align: center;
-  width: 100%;
-  max-width: 156px;
-}
-.carousel-content.active {
-  display: block;
-  width: 156px;
-}
-.next-button,
-.prev-button {
-  padding-top: 3.5px;
-  max-width: 7px;
-  max-height: 12px;
-}
-
-.prev-button img,
-.next-button img {
-  width: 100%;
-  height: 100%;
-}
-
-.content-top {
-  width: 100%;
-  max-width: 300px;
-  height: 100%;
-  max-height: 444px;
-  background: url("./images/mens-scarf-and-briefcase.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-.content-top img {
+.slide {
+  width: 300px;
+  height: 600px;
+  background-size: contain;
+  width: 300px;
+  height: 444px;
+}
+.content-top {
+  width: 300px;
+  height: 444px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-top .logo {
   width: 199px;
   height: 63px;
   object-fit: contain;
 }
+.content-top img {
+  width: 100%;
+  height: 100%;
+}
 .content-bottom {
+  background: #f9f8f0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #f9f7f0;
-  max-height: 165px;
-  padding-top: 33px;
+  position: relative; /* Add this line */
 }
 .content-bottom .container {
   width: 100%;
   max-width: 261px;
-  height: 100%;
   display: flex;
   justify-content: space-between;
+  padding-top: 33px;
+  padding-bottom: 32px;
 }
-.content-bottom h2 {
-  font-family: "BemboStd", serif;
-  font-size: 24.7px;
-  font-weight: 400;
-  line-height: 1.16;
-  letter-spacing: 0.5px;
+.product-content {
   text-align: center;
-  color: #000;
-  margin-top: 0;
-  margin-bottom: 37px;
+  width: 100%;
   max-width: 156.6px;
-  max-height: 52px;
+}
+.prev-button,
+.next-button {
+  padding-top: 3.5px;
+  max-width: 7px;
+  max-height: 12px;
+  cursor: pointer;
+}
+.prev-button img,
+.next-button img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
-.content-bottom .shop-now-btn {
+.product-content h2 {
+  margin-top: 0;
+  margin-bottom: 37px;
+  width: 100%;
+  font-family: "BemboStd", sans-serif;
+  font-size: 25px;
+  line-height: 29px;
+  letter-spacing: 0.5px;
+  color: #000;
+}
+.shop-now-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.content-bottom .shop-now-btn h2 {
-  margin: 0 0 3.5px;
-  font-family: "Avenir-heavy", serif;
-  font-size: 13px;
-  font-weight: 900;
+.shop-now-btn a {
+  text-decoration: none;
+  font-family: "Avenir-heavy", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 1.3px;
-  text-align: center;
   color: #000;
 }
-.content-bottom .shop-now-btn a {
-  text-decoration: none;
-}
-.content-bottom .line {
+.line {
   width: 81px;
   height: 1px;
   background-color: #000;
-  margin-bottom: 32px;
 }
-.banner {
-  width: 300px;
-  height: 600px;
+.slide {
+  opacity: 0; /* Initially, make all slides fully transparent */
+  pointer-events: none; /* Disable pointer events on inactive slides */
+  position: absolute; /* Position them absolutely to overlap */
+  transition: opacity 1s; /* Add a transition for smoother fade-in/fade-out */
 }
-.container {
-  display: flex;
-  justify-content: center;
+
+.slide.active {
+  opacity: 1; /* When the container has the "active" class, make all slides fully visible */
+  pointer-events: auto; /* Enable pointer events on the active slide */
+  position: relative; /* Reset position to normal */
+  display: block; /* Show the active slide */
+}
+
+#slide1 {
+  background-image: url("./images/micro-bags@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#slide2 {
+  background-image: url("./images/mens-scarf-and-briefcase@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#slide3 {
+  background-image: url("./images/mini-alexa@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#slide4 {
+  background-image: url("./images/lily@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
