@@ -1,14 +1,19 @@
 const slides = document.querySelectorAll(".banner-content");
 let currentIndex = 0;
 let intervalId;
+const fadeDuration = 0.5; // Adjust the duration for smoother transition (in seconds)
 
 const changeSlide = (direction) => {
   const currentSlide = slides[currentIndex];
   const nextIndex = (currentIndex + direction + slides.length) % slides.length;
   const nextSlide = slides[nextIndex];
 
-  gsap.fromTo(currentSlide, { opacity: 1 }, { opacity: 0, duration: 1 });
-  gsap.fromTo(nextSlide, { opacity: 0 }, { opacity: 1, duration: 1 });
+  gsap.to(currentSlide, { opacity: 0, duration: fadeDuration });
+  gsap.fromTo(
+    nextSlide,
+    { opacity: 0 },
+    { opacity: 1, duration: fadeDuration }
+  );
 
   currentSlide.classList.remove("active");
   nextSlide.classList.add("active");
