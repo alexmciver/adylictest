@@ -1,135 +1,109 @@
+* {
+  box-sizing: content-box;
+}
+/* fonts */
 @font-face {
   font-family: "BemboStd";
-  font-weight: 400;
   src: url("./fonts/BemboStd.woff2") format("woff2");
 }
 @font-face {
   font-family: "Avenir-heavy";
-  font-weight: 900;
   src: url("./fonts/Avenir-Heavy.woff2") format("woff2");
 }
-
-.slider-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-.slide {
-  width: 300px;
-  height: 600px;
-  background-size: contain;
-  width: 300px;
-  height: 444px;
-}
-.content-top {
-  width: 300px;
-  height: 444px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.content-top .logo {
-  width: 199px;
-  height: 63px;
-  object-fit: contain;
-}
-.content-top img {
-  width: 100%;
-  height: 100%;
-}
-.content-bottom {
-  background: #f9f8f0;
-  display: flex;
-  justify-content: center;
-  position: relative; /* Add this line */
-}
-.content-bottom .container {
-  width: 100%;
-  max-width: 261px;
-  display: flex;
-  justify-content: space-between;
-  padding-top: 33px;
-  padding-bottom: 32px;
-}
-.product-content {
-  text-align: center;
-  width: 100%;
-  max-width: 156.6px;
-}
-.prev-button,
-.next-button {
-  padding-top: 3.5px;
-  max-width: 7px;
-  max-height: 12px;
-  cursor: pointer;
-}
-.prev-button img,
-.next-button img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.product-content h2 {
-  margin-top: 0;
-  margin-bottom: 37px;
-  width: 100%;
-  font-family: "BemboStd", sans-serif;
-  font-size: 25px;
-  line-height: 29px;
-  letter-spacing: 0.5px;
-  color: #000;
-}
-.shop-now-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.shop-now-btn a {
-  text-decoration: none;
-  font-family: "Avenir-heavy", sans-serif;
-  text-transform: uppercase;
-  color: #000;
-}
-.line {
-  width: 81px;
-  height: 1px;
-  background-color: #000;
-}
-.slide {
-  opacity: 0; /* Initially, make all slides fully transparent */
-  pointer-events: none; /* Disable pointer events on inactive slides */
-  position: absolute; /* Position them absolutely to overlap */
-  transition: opacity 1s; /* Add a transition for smoother fade-in/fade-out */
-}
-
-.slide.active {
-  opacity: 1; /* When the container has the "active" class, make all slides fully visible */
-  pointer-events: auto; /* Enable pointer events on the active slide */
-  position: relative; /* Reset position to normal */
-  display: block; /* Show the active slide */
-}
-
-#slide1 {
+.slide1 {
   background-image: url("./images/micro-bags@2x.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-#slide2 {
+.slide2 {
   background-image: url("./images/mens-scarf-and-briefcase@2x.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-#slide3 {
+.slide3 {
   background-image: url("./images/mini-alexa@2x.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-#slide4 {
+.slide4 {
   background-image: url("./images/lily@2x.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.banner-content {
+  width: 300px;
+  height: 600px;
+}
+.top {
+  width: 300px;
+  height: 444px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.top img {
+  width: 199px;
+  height: 63px;
+  object-fit: contain;
+}
+.next-button,
+.prev-button {
+  z-index: 1;
+}
+.bottom {
+  background: #f9f8f0;
+  padding-top: 33px;
+  display: flex;
+  justify-content: center;
+}
+.shop-now-btn-text {
+  width: 156.6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shop-now-btn-text a {
+  text-decoration: none;
+}
+.shop-now-btn-text h2 {
+  font-family: "BemboStd", sans-serif;
+  font-size: 25px;
+  line-height: 29px;
+  letter-spacing: 0.5px;
+  margin-top: 0;
+  margin-bottom: 37px;
+}
+.shop-now-btn-text h3 {
+  font-family: "Avenir-heavy", sans-serif;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 30px;
+  letter-spacing: 1.3px;
+  color: #000;
+  margin: 0;
+}
+.line {
+  background: #000;
+  height: 1px;
+  width: 81px;
+  margin-bottom: 32px;
+}
+.bottom .container {
+  width: 261px;
+  display: flex;
+  justify-content: space-between;
+}
+.banner-content {
+  display: none;
+}
+.banner-content.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

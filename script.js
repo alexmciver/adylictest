@@ -1,42 +1,51 @@
-const slides = document.querySelectorAll(".slide");
+const slides = document.querySelectorAll(".banner-content");
 let currentIndex = 0;
-let autoplayInterval;
+let intervalId;
 
 const changeSlide = (direction) => {
-  gsap.to(slides[currentIndex], { opacity: 0, duration: 1 });
-  currentIndex = (currentIndex + direction + slides.length) % slides.length;
-  gsap.to(slides[currentIndex], { opacity: 1, duration: 1 });
+  const currentSlide = slides[currentIndex];
+  const nextIndex = (currentIndex + direction + slides.length) % slides.length;
+  const nextSlide = slides[nextIndex];
 
-  // Remove "active" class from all slides
-  slides.forEach((slide) => slide.classList.remove("active"));
+  gsap.fromTo(currentSlide, { opacity: 1 }, { opacity: 0, duration: 1 });
+  gsap.fromTo(nextSlide, { opacity: 0 }, { opacity: 1, duration: 1 });
 
-  // Add the "active" class to the next slide
-  slides[currentIndex].classList.add("active");
+  currentSlide.classList.remove("active");
+  nextSlide.classList.add("active");
+
+  currentIndex = nextIndex;
 };
 
-document
-  .querySelector(".next-button")
-  .addEventListener("click", () => changeSlide(1));
-document
-  .querySelector(".prev-button")
-  .addEventListener("click", () => changeSlide(-1));
-
-// Initially show the first slide and add the "active" class
-slides[currentIndex].classList.add("active");
-gsap.set(slides[currentIndex], { opacity: 1 });
-
-const startAutoPlay = () => {
-  autoplayInterval = setInterval(() => changeSlide(1), 1500); // Each slide will last for 1.5 seconds
+const autoPlay = () => {
+  intervalId = setInterval(() => {
+    changeSlide(1);
+  }, 1500);
 };
 
 const stopAutoPlay = () => {
-  clearInterval(autoplayInterval);
+  clearInterval(intervalId);
 };
 
-startAutoPlay(); // Start autoplay initially
+const startAutoPlay = () => {
+  autoPlay();
+};
 
-// Pause autoplay on slide hover
+document.querySelector(".next-button").addEventListener("click", () => {
+  stopAutoPlay();
+  changeSlide(1);
+  startAutoPlay();
+});
+
+document.querySelector(".prev-button").addEventListener("click", () => {
+  stopAutoPlay();
+  changeSlide(-1);
+  startAutoPlay();
+});
+
+slides[currentIndex].classList.add("active");
+autoPlay();
+
 slides.forEach((slide) => {
-  slide.addEventListener("mouseenter", stopAutoPlay);
-  slide.addEventListener("mouseleave", startAutoPlay);
+  slide.addEventListener("mouseover", stopAutoPlay);
+  slide.addEventListener("mouseout", startAutoPlay);
 });
